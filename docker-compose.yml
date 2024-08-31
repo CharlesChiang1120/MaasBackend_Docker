@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-yeabytour
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: yeabytour
+    ports:
+      - 3307:3306
+    volumes:
+      - ./app/db:/docker-entrypoint-initdb.d
+    
+
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask-yeabytour
+    ports:
+      - "6300:5000"
+    depends_on:
+      - db
+    environment:
+      FLASK_APP: router.py
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: "1234"
+      DB_NAME: yeabytour
+      DB_PORT: 3306
+
+    volumes:
+      - ./app:/app
