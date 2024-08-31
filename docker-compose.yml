@@ -12,6 +12,7 @@ services:
       - 3307:3306
     volumes:
       - ./app/db:/docker-entrypoint-initdb.d
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     
 
   flask:

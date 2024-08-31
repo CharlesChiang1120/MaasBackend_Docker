@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS yeabytour;
+CREATE DATABASE IF NOT EXISTS yeabytour CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE yeabytour;
 
@@ -16,7 +16,21 @@ CREATE TABLE `useraccount` (
    `phonenumber` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
    `pickuplocation` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
    PRIMARY KEY (`id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+-- Create the 'sharecarevent' table
+CREATE TABLE `sharecarevent` (
+   `id` char(36) COLLATE utf8_unicode_ci NOT NULL,
+   `carpreferences` json DEFAULT NULL,
+   `passengers` json DEFAULT NULL,
+   `startTime` datetime DEFAULT NULL,
+   `destination` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+   `departurelocations` json DEFAULT NULL,
+   `maxparticipants` json DEFAULT NULL,
+   `confirmed` tinyint(1) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Create the 'activity' table
 CREATE TABLE `activity` (
@@ -31,19 +45,6 @@ CREATE TABLE `activity` (
    `ticketlink` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
    `destinationAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
    PRIMARY KEY (`activityid`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- Create the 'sharecarevent' table
-CREATE TABLE `sharecarevent` (
-   `id` char(36) COLLATE utf8_unicode_ci NOT NULL,
-   `carpreferences` json DEFAULT NULL,
-   `passengers` json DEFAULT NULL,
-   `startTime` datetime DEFAULT NULL,
-   `destination` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-   `departurelocations` json DEFAULT NULL,
-   `maxparticipants` json DEFAULT NULL,
-   `confirmed` tinyint(1) DEFAULT NULL,
-   PRIMARY KEY (`id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Fake data for useraccount
